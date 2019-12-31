@@ -10,11 +10,13 @@ let str2 = "The1 quick2 brown3 fox4 jumps5 over6 the7 lazy8 dog9"
 const replaceString = (inputStr) =>{
     if(typeof inputStr === 'string'){
         return inputStr.split(' ').map((word, i) => {
-            i++
-            return word+i
-        }).join(' ')
+            i += 1;
+            return word + i;
+        }).join(' ');
     }
-    else return "Invalid string"
+    else {
+        return "Invalid string";
+    }
 }
 
 console.log(replaceString(str1))

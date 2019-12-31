@@ -62,7 +62,7 @@ var response = {
     };
 
 //Problem 6:
-let oSiteCatalyst = {}
+let oSiteCatalyst = {};
 oSiteCatalyst.products = {
     "prod": "", // Extract them item's productId from "itemPageUrl" the substring beginning with "prod2246..."
     "quantity": "", // The value of "qty", converted to a string
@@ -73,33 +73,33 @@ oSiteCatalyst.products = {
     };
 //A: 
 const getIdFromUrl = function(url){
-    return url.split('/').find(item => (/^prod\d+/i).test(item) === true).split('.')[0]
+    return url.split('/').find(item => (/^prod\d+/i).test(item) === true).split('.')[0];
 }
 
 let prodId  = response['cartItems'].map(item =>{
-    let url = item.itemInfo.itemPageUrl
-    return getIdFromUrl(url)
+    let url = item.itemInfo.itemPageUrl;
+    return getIdFromUrl(url);
 })
-oSiteCatalyst.products.prod = prodId[0]
+oSiteCatalyst.products.prod = prodId[0];
 
 //B:
-oSiteCatalyst.products.quantity = response['cartItems'][0].qty.toString()
+oSiteCatalyst.products.quantity = response['cartItems'][0].qty.toString();
 
 //C:
-oSiteCatalyst.products.shipdays = new Date(response['cartItems'][0].itemInfo.minDeliveryDate)
+oSiteCatalyst.products.shipdays = new Date(response['cartItems'][0].itemInfo.minDeliveryDate);
 
 //D:
 if(response['cartItems'][0].props.shippingDiscountEligible){
-    oSiteCatalyst.products.shipvalue = "free-plus"
+    oSiteCatalyst.products.shipvalue = "free-plus";
 }
 
 //E:
-let listPriceInCents = response['cartItems'][0].priceInfo.listPriceInCents
-let qty = response['cartItems'][0].qty
-oSiteCatalyst.products.subtotal = `$${(listPriceInCents*qty/100).toFixed(2)}`
+let listPriceInCents = response['cartItems'][0].priceInfo.listPriceInCents;
+let qty = response['cartItems'][0].qty;
+oSiteCatalyst.products.subtotal = `$${(listPriceInCents*qty/100).toFixed(2)}`;
 
 //F:
-oSiteCatalyst.products.uprice = `$${(listPriceInCents/100).toFixed(2)}`
+oSiteCatalyst.products.uprice = `$${(listPriceInCents/100).toFixed(2)}`;
 
 
-console.log(oSiteCatalyst)
+console.log(oSiteCatalyst);

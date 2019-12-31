@@ -2,23 +2,23 @@
 
 const isArrayIdentical = (arr1, arr2) =>{
     if(Array.isArray(arr1) && Array.isArray(arr2)){
-        let arr1Length = arr1.length
-        let arr2Length = arr2.length
+        let arr1Length = arr1.length;
+        let arr2Length = arr2.length;
         if(arr1Length === arr2Length){
             for(let i=0; i<arr1Length; i++){
                 if(arr1[i] !== arr2[i])
-                    return false
+                    return false;
             }
-            return true
+            return true;
         }
         else{
-            return false
+            return false;
         }
     }
     else {
-        return 'Not valid array(s)'
+        return 'Not valid array(s)';
     }
 
 }
 
-console.log(isArrayIdentical(["b"], ['b']))
+console.log(isArrayIdentical(["b"], ['b']));

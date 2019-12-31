@@ -9,66 +9,69 @@ let str2 = "The1 quick2 brown3 fox4 jumps5 over6 the7 lazy8 dog9"
 const replaceString = (inputStr) =>{
     if(typeof inputStr === 'string'){
         return inputStr.split(' ').map((word, i) => {
-            i++
-            return word+i
-        }).join(' ')
+            i += 1;
+            return word + i;
+        }).join(' ');
     }
-    else return "Invalid string"
+    else {
+        return "Invalid string";
+    }
+    
 }
 
 console.log(replaceString(str1))
 
 //Problem 2:
-var dwarves = "bashful doc dopey grumpy happy sleepy sneezy"
+var dwarves = "bashful doc dopey grumpy happy sleepy sneezy";
 
 console.log(
     dwarves.split(/\b/g).reverse().join('')
-)
+);
 
 //Problem 3:
 //Write a function that takes a number (from 1 to 12) and return its corresponding month name as a string.
 
 const getMonthFromNum = (num) =>{
     if(Number.isInteger(num) === true && num >= 1 && num <= 12){
-        const months = ['January', 'February', 'March', 'April', 'May', 'June','July', 'August', 'September', 'October', 'November', 'December']
-        return months[num-1]
+        const months = ['January', 'February', 'March', 'April', 'May', 'June','July', 'August', 'September', 'October', 'November', 'December'];
+        return months[num-1];
     }
-    else return "Please enter a number between 1 to 12"
+    else return "Please enter a number between 1 to 12";
 }
 
-console.log("Input a integer from 1 to 12, get the month: ", getMonthFromNum(12))
+console.log("Input a integer from 1 to 12, get the month: ", getMonthFromNum(12));
 
 //Problem 4:
 //Write a regular expression that matches any string containing at least one digit.
 
 let reg = /\d/g
-console.log("Reg expression-string with atleast one digit: ", reg.test('22212112313213aaaaadsfasdfasdf'))
+console.log("Reg expression-string with atleast one digit: ", reg.test('22212112313213aaaaadsfasdfasdf'));
 
 //Problem 5:
 //Write a function that returns true if two arrays are identical, and false otherwise
 
 const isArrayIdentical = (arr1, arr2) =>{
     if(Array.isArray(arr1) && Array.isArray(arr2)){
-        let arr1Length = arr1.length
-        let arr2Length = arr2.length
+        let arr1Length = arr1.length;
+        let arr2Length = arr2.length;
         if(arr1Length === arr2Length){
             for(let i=0; i<arr1Length; i++){
                 if(arr1[i] !== arr2[i])
-                    return false
+                    return false;
             }
-            return true
+            return true;
         }
         else{
-            return false
+            return false;
         }
     }
     else {
-        return 'Not valid array(s)'
+        return 'Not valid array(s)';
     }
 
 }
 
-console.log("Is array identical:", isArrayIdentical(["b, c"], ['b, c']))
+console.log("Is array identical:", isArrayIdentical(["b, c"], ['b, c']));
 //========================================================
 
 var response = {
@@ -115,7 +118,7 @@ var response = {
     };
 
 //Problem 6:
-let oSiteCatalyst = {}
+let oSiteCatalyst = {};
 oSiteCatalyst.products = {
     "prod": "", // Extract them item's productId from "itemPageUrl" the substring beginning with "prod2246..."
     "quantity": "", // The value of "qty", converted to a string
@@ -126,33 +129,33 @@ oSiteCatalyst.products = {
     };
 //A: 
 const getIdFromUrl = function(url){
-    return url.split('/').find(item => (/^prod\d+/i).test(item) === true).split('.')[0]
+    return url.split('/').find(item => (/^prod\d+/i).test(item) === true).split('.')[0];
 }
 
 let prodId  = response['cartItems'].map(item =>{
-    let url = item.itemInfo.itemPageUrl
-    return getIdFromUrl(url)
+    let url = item.itemInfo.itemPageUrl;
+    return getIdFromUrl(url);
 })
-oSiteCatalyst.products.prod = prodId[0]
+oSiteCatalyst.products.prod = prodId[0];
 
 //B:
-oSiteCatalyst.products.quantity = response['cartItems'][0].qty.toString()
+oSiteCatalyst.products.quantity = response['cartItems'][0].qty.toString();
 
 //C:
-oSiteCatalyst.products.shipdays = new Date(response['cartItems'][0].itemInfo.minDeliveryDate)
+oSiteCatalyst.products.shipdays = new Date(response['cartItems'][0].itemInfo.minDeliveryDate);
 
 //D:
 if(response['cartItems'][0].props.shippingDiscountEligible){
-    oSiteCatalyst.products.shipvalue = "free-plus"
+    oSiteCatalyst.products.shipvalue = "free-plus";
 }
 
 //E:
-let listPriceInCents = response['cartItems'][0].priceInfo.listPriceInCents
-let qty = response['cartItems'][0].qty
-oSiteCatalyst.products.subtotal = `$${(listPriceInCents*qty/100).toFixed(2)}`
+let listPriceInCents = response['cartItems'][0].priceInfo.listPriceInCents;
+let qty = response['cartItems'][0].qty;
+oSiteCatalyst.products.subtotal = `$${(listPriceInCents*qty/100).toFixed(2)}`;
 
 //F:
-oSiteCatalyst.products.uprice = `$${(listPriceInCents/100).toFixed(2)}`
+oSiteCatalyst.products.uprice = `$${(listPriceInCents/100).toFixed(2)}`;
 
 
-console.log(oSiteCatalyst)
+console.log(oSiteCatalyst);
